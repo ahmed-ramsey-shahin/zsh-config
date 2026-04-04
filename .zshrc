@@ -13,6 +13,13 @@ startup() {
     # figlet Hi
 }
 
+dotnet_project() {
+    dotnet new web --no-https -o $1
+    cd "$1" || return
+    dotnet new sln
+    dotnet sln add .
+}
+
 # Run ufetch at startup
 startup
 
@@ -39,7 +46,6 @@ zinit snippet OMZP::aws
 zinit snippet OMZP::kubectl
 zinit snippet OMZP::kubectx
 zinit snippet OMZP::command-not-found
-zinit light jeffreytse/zsh-vi-mode
 
 # auto start apps
 autoload -U compinit && compinit
